@@ -4,6 +4,11 @@ export default {
 		updateCurrentStatusIndex(state, num) {
 			state.current_status_index = num
 		},
+		changeOrganisationData(state, organisation) {
+			state.organisations[0].type = organisation.type
+			state.organisations[0].name = organisation.name
+			state.organisations[0].description = organisation.description
+		},
 	},
 	state: {
 		current_status_index: 0,

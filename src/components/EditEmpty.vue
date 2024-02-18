@@ -10,15 +10,16 @@
 		<div class="parameter_indentation">
 			<div class="text_item"><span class="designation">*</span>Тип</div>
 			<div class="w_100">
-				<select class="w_100">
+				<select class="w_100" v-model="type">
 					<option
 						v-for="typeOption in allTypeOptions"
 						:key="typeOption.id"
-						value="typeOption.id"
+						:value="typeOption.title"
 					>
 						{{ typeOption.title }}
 					</option>
 				</select>
+				<!-- <div>Выбрано: {{ organisationType }}</div> -->
 			</div>
 		</div>
 		<div class="parameter_indentation">
@@ -26,7 +27,7 @@
 				<span class="designation">*</span>Название организации
 			</div>
 			<div class="w_100">
-				<input type="text" placeholder="Санаторий 'Огонёк'" />
+				<input type="text" v-model="name" placeholder="Санаторий 'Огонёк'" />
 			</div>
 		</div>
 		<div class="parameter_indentation">
@@ -34,6 +35,7 @@
 			<div class="w_100">
 				<textarea
 					name=""
+					v-model="description"
 					placeholder="Санаторий 'Огонёк'"
 					id=""
 					cols="30"
@@ -63,7 +65,15 @@
 			</div>
 		</div>
 		<div class="text_center">
-			<button class="btn_save" @click="changeStatusIndex(2)">Сохранить</button>
+			<button
+				class="btn_save"
+				@click="
+					changeStatusIndex(2)
+					changeOrganisation()
+				"
+			>
+				Сохранить
+			</button>
 		</div>
 	</div>
 </template>
@@ -72,20 +82,57 @@
 import { mapGetters, mapMutations } from 'vuex'
 
 export default {
-	computed: mapGetters(['allTypeOptions']),
+	data() {
+		return {
+			organisationType: 'Пансионат',
+			organisation: {
+				id: 0,
+				type: 0,
+				name: "Санаторий 'Огонёк'",
+				description: 'Мой первый бизнес',
+				logo: '../assets/img/imgContainer.png',
+			},
+		}
+	},
+	computed: {
+		type: {
+			get() {
+				return this.allOrganisations[0].type
+			},
+			set(value) {
+				this.organisation.type = this.allTypeOptions
+					.map((el) => el.title)
+					.indexOf(value)
+			},
+		},
+		name: {
+			get() {
+				return this.allOrganisations[0].name
+			},
+			set(value) {
+				this.organisation.name = value
+			},
+		},
+		description: {
+			get() {
+				return this.allOrganisations[0].description
+			},
+			set(value) {
+				this.organisation.description = value
+			},
+		},
+		...mapGetters(['allTypeOptions', 'allOrganisations']),
+	},
 	methods: {
-		...mapMutations(['updateCurrentStatusIndex']),
+		...mapMutations(['updateCurrentStatusIndex', 'changeOrganisationData']),
 		changeStatusIndex(index) {
 			this.updateCurrentStatusIndex(index)
+		},
+		changeOrganisation() {
+			this.changeOrganisationData(this.organisation)
 		},
 	},
 }
 </script>
 
-<style>
-select {
-	height: 35px;
-	line-height: 35px;
-	padding: 0 7px;
-}
-</style>
+<style></style>

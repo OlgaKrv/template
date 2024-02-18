@@ -219,9 +219,17 @@ textarea {
 	display: flex;
 }
 
+.btn_add:hover {
+	background: rgb(212, 232, 254);
+}
+
+.btn_add:active {
+	background: rgb(184, 216, 255);
+}
+
 .btn_close {
 	cursor: pointer;
-	background: rgba(237, 237, 237, 1);
+	background: rgba(237, 237, 237);
 	color: rgba(53, 53, 53, 1);
 	font-family: Roboto-Medium;
 	height: 28px;
@@ -237,13 +245,21 @@ textarea {
 	display: flex;
 }
 
+.btn_close:hover {
+	background: rgb(210, 210, 210);
+}
+
+.btn_close:active {
+	background: rgb(172, 172, 172);
+}
+
 .btn_save {
 	cursor: pointer;
 	width: 100%;
 	padding: 12px;
 	border-radius: 8px;
 	gap: 8px;
-	background: rgba(21, 136, 201, 1);
+	background: rgba(21, 136, 201);
 	border: 0px;
 	margin-top: 14px;
 	color: #fff;
@@ -253,6 +269,14 @@ textarea {
 	line-height: 20px;
 	letter-spacing: 0em;
 	text-align: center;
+}
+
+.btn_save:hover {
+	background: rgb(62, 162, 220);
+}
+
+.btn_save:active {
+	background: rgb(50, 179, 254);
 }
 
 .icon {
