@@ -7,7 +7,7 @@
 		>
 			<div class="content_title">
 				<h2>Организация</h2>
-				<button class="btn_close">
+				<button class="btn_close" @click="changeStatusIndex(1)">
 					<img class="icon" src="../assets/img/Vector.svg" alt="icon" />
 					Редактировать
 				</button>
@@ -41,13 +41,17 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 
 export default {
 	computed: {
 		...mapGetters(['allOrganisations', 'typeOrganisation']),
 	},
 	methods: {
+		...mapMutations(['updateCurrentStatusIndex']),
+		changeStatusIndex(index) {
+			this.updateCurrentStatusIndex(index)
+		},
 		typeOrganisation(num) {
 			return this.typeOrganisation(num)
 		},

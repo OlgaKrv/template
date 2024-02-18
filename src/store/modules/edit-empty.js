@@ -1,7 +1,12 @@
 export default {
 	actions: {},
-	mutations: {},
+	mutations: {
+		updateCurrentStatusIndex(state, num) {
+			state.current_status_index = num
+		},
+	},
 	state: {
+		current_status_index: 0,
 		type_options: [
 			{ id: 0, title: 'Санаторий' },
 			{ id: 1, title: 'Пансионат' },
@@ -18,6 +23,9 @@ export default {
 		],
 	},
 	getters: {
+		currentStatusIndex(state) {
+			return state.current_status_index
+		},
 		allTypeOptions(state) {
 			return state.type_options
 		},

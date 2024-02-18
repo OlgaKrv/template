@@ -1,18 +1,20 @@
 <template>
 	<div id="app">
-		<empty />
-		<edit-empty />
-		<filled />
+		<div v-if="this.currentStatusIndex == 0"><empty /></div>
+		<div v-if="this.currentStatusIndex == 1"><edit-empty /></div>
+		<div v-if="this.currentStatusIndex == 2"><filled /></div>
 	</div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import Empty from './components/Empty.vue'
 import EditEmpty from './components/EditEmpty.vue'
 import Filled from './components/Filled.vue'
 
 export default {
 	name: 'App',
+	computed: mapGetters(['currentStatusIndex']),
 	components: {
 		Empty,
 		EditEmpty,
@@ -50,10 +52,10 @@ body {
 }
 
 #app {
+	min-height: 100vh;
 	font-family: Roboto-Medium;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	margin-top: 60px;
 	background-color: rgb(113, 113, 113);
 	padding: 10px;
 }
@@ -90,6 +92,7 @@ h2 {
 input,
 select {
 	width: 100%;
+	cursor: pointer;
 	padding: 7px;
 	margin: 0;
 	border-radius: 8px;
@@ -104,6 +107,7 @@ select {
 
 textarea {
 	width: 100%;
+	cursor: pointer;
 	padding: 3px 7px;
 	margin: 0;
 	border-radius: 8px;
@@ -199,6 +203,7 @@ textarea {
 }
 
 .btn_add {
+	cursor: pointer;
 	background: rgba(232, 242, 254, 1);
 	color: rgba(4, 92, 196, 1);
 	font-family: Roboto-Medium;
@@ -215,6 +220,7 @@ textarea {
 }
 
 .btn_close {
+	cursor: pointer;
 	background: rgba(237, 237, 237, 1);
 	color: rgba(53, 53, 53, 1);
 	font-family: Roboto-Medium;
@@ -232,6 +238,7 @@ textarea {
 }
 
 .btn_save {
+	cursor: pointer;
 	width: 100%;
 	padding: 12px;
 	border-radius: 8px;
