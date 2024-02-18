@@ -1,116 +1,23 @@
 <template>
 	<div id="app">
-		<div class="content_wrapper">
-			<div class="content_title">
-				<h2>Организация</h2>
-			</div>
-			<div class="text_description parameter_indentation">
-				Назване организации, логотип и описание
-			</div>
-			<div class="text_center">
-				<button class="btn_add">
-					<img class="icon" src="./assets/img/plus_16.svg" alt="icon" />
-					Добавить
-				</button>
-			</div>
-		</div>
-		<div class="content_wrapper">
-			<div class="content_title">
-				<h2>Организация</h2>
-				<button class="btn_close">
-					<img class="icon" src="./assets/img/Icon_close.svg" alt="icon" />
-					Отменить
-				</button>
-			</div>
-			<div class="parameter_indentation">
-				<div class="text_item"><span class="designation">*</span>Тип</div>
-				<div class="w_100">
-					<input type="text" placeholder="Санаторий" />
-				</div>
-			</div>
-			<div class="parameter_indentation">
-				<div class="text_item">
-					<span class="designation">*</span>Название организации
-				</div>
-				<div class="w_100">
-					<input type="text" placeholder="Санаторий 'Огонёк'" />
-				</div>
-			</div>
-			<div class="parameter_indentation">
-				<div class="text_item">Описание</div>
-				<div class="w_100">
-					<textarea
-						name=""
-						placeholder="Санаторий 'Огонёк'"
-						id=""
-						cols="30"
-						rows="3"
-					></textarea>
-				</div>
-				<div class="text_after">Описание в модуле на сайте не показывается</div>
-			</div>
-			<div class="parameter_indentation">
-				<div class="text_item"><span class="designation">*</span>Логотип</div>
-				<div class="insertion_area">
-					<div class="text_description">
-						Загрузите изображение или перетащите файл сюда
-					</div>
-					<div class="text_after text_center pt_5">
-						Максимальный размер изображения 10 Мб.&nbsp;
-					</div>
-					<div class="text_after text_center parameter_indentation pt_5">
-						Допустимые форматы: .jpeg .png .webp .svg
-					</div>
-					<div class="text_center">
-						<button class="btn_add">
-							<img class="icon" src="./assets/img/plus_16.svg" alt="icon" />
-							Загрузить
-						</button>
-					</div>
-				</div>
-			</div>
-			<div class="text_center">
-				<button class="btn_save">Сохранить</button>
-			</div>
-		</div>
-		<div class="content_wrapper">
-			<div class="content_title">
-				<h2>Организация</h2>
-				<button class="btn_close">
-					<img class="icon" src="./assets/img/Vector.svg" alt="icon" />
-					Редактировать
-				</button>
-			</div>
-			<div class="parameter_indentation">
-				<div class="text_after pt_3">Тип</div>
-				<div class="text_item_element">Санаторий</div>
-			</div>
-			<div class="parameter_indentation">
-				<div class="text_after">Название организации</div>
-				<div class="text_item_element">Санаторий 'Огонёк'</div>
-			</div>
-			<div class="">
-				<div class="text_after">Описание</div>
-				<div class="text_item_element">Мой первый бизнес</div>
-			</div>
-			<div class="logo_before">
-				<div class="text_item">Логотип</div>
-				<div class="logo_area">
-					<img
-						class="logo"
-						src="./assets/img/imgContainer.png"
-						alt="imgContainer"
-					/>
-				</div>
-			</div>
-		</div>
+		<empty />
+		<edit-empty />
+		<filled />
 	</div>
 </template>
 
 <script>
+import Empty from './components/Empty.vue'
+import EditEmpty from './components/EditEmpty.vue'
+import Filled from './components/Filled.vue'
+
 export default {
 	name: 'App',
-	components: {},
+	components: {
+		Empty,
+		EditEmpty,
+		Filled,
+	},
 }
 </script>
 
@@ -180,8 +87,9 @@ h2 {
 	display: flex;
 }
 
-input {
-	width: 98%;
+input,
+select {
+	width: 100%;
 	padding: 7px;
 	margin: 0;
 	border-radius: 8px;
@@ -195,7 +103,7 @@ input {
 }
 
 textarea {
-	width: 98%;
+	width: 100%;
 	padding: 3px 7px;
 	margin: 0;
 	border-radius: 8px;
