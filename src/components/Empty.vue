@@ -4,7 +4,7 @@
 			<h2>Организация</h2>
 		</div>
 		<div class="text_description parameter_indentation">
-			Назване организации, логотип и описание
+			Название организации, логотип и описание
 		</div>
 		<div class="text_center">
 			<button class="btn_add" @click="changeStatusIndex(1)">

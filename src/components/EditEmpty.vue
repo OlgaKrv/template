@@ -56,11 +56,27 @@
 				<div class="text_after text_center parameter_indentation pt_5">
 					Допустимые форматы: .jpeg .png .webp .svg
 				</div>
-				<div class="text_center">
-					<button class="btn_add">
+				<div class="text_center parameter_indentation">
+					<button class="btn_add" @click="fileUpload">
 						<img class="icon" src="../assets/img/plus_16.svg" alt="icon" />
 						Загрузить
 					</button>
+				</div>
+				<div class="text_center">
+					<input
+						v-model="formData.displayFileName"
+						class="input-field-file"
+						readonly
+					/>
+					<input
+						type="file"
+						class="input-field-file"
+						ref="fupload"
+						@change="onFileChange"
+					/>
+					<div v-if="readyToUpload">
+						<img :src="formData.uploadFileData" class="preview_img" />
+					</div>
 				</div>
 			</div>
 		</div>
@@ -84,7 +100,12 @@ import { mapGetters, mapMutations } from 'vuex'
 export default {
 	data() {
 		return {
+			formData: {
+				displayFileName: null,
+				uploadFileData: null,
+			},
 			organisationType: 'Пансионат',
+			file: '',
 			organisation: {
 				id: 0,
 				type: 0,
@@ -121,18 +142,59 @@ export default {
 				this.organisation.description = value
 			},
 		},
+		readyToUpload() {
+			return this.formData.displayFileName && this.formData.uploadFileData
+		},
 		...mapGetters(['allTypeOptions', 'allOrganisations']),
 	},
 	methods: {
 		...mapMutations(['updateCurrentStatusIndex', 'changeOrganisationData']),
+		onFileChange(event) {
+			if (event.target.files && event.target.files.length) {
+				const file = event.target.files[0]
+				this.formData.displayFileName = `${event.target.files[0].name}`
+				const reader = new FileReader()
+				reader.onload = (e) => {
+					this.formData.uploadFileData = e.target.result
+				}
+				reader.readAsDataURL(file)
+			}
+		},
+		fileUpload() {
+			this.$refs.fupload.click()
+		},
 		changeStatusIndex(index) {
 			this.updateCurrentStatusIndex(index)
 		},
 		changeOrganisation() {
 			this.changeOrganisationData(this.organisation)
 		},
+		calcSize(size) {
+			return Math.round(size)
+		},
 	},
 }
 </script>
 
-<style></style>
+<style>
+.d_block {
+	display: block;
+}
+
+.input-field-file {
+	display: none;
+}
+
+.preview_img {
+	width: 250px;
+	padding: 15px;
+	border: 1.5px solid #4444;
+	border-radius: 8px;
+}
+
+select {
+	height: 35px;
+	line-height: 35px;
+	padding: 0 7px;
+}
+</style>
