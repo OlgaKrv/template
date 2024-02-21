@@ -9,6 +9,12 @@ export default {
 			state.organisations[0].name = organisation.name
 			state.organisations[0].description = organisation.description
 		},
+		changeUploadFileData(state, uploadFileData) {
+			state.organisations[0].formData.uploadFileData = uploadFileData
+		},
+		changeDisplayFileName(state, displayFileName) {
+			state.organisations[0].formData.displayFileName = displayFileName
+		},
 	},
 	state: {
 		current_status_index: 0,
@@ -23,7 +29,10 @@ export default {
 				type: 0,
 				name: "Санаторий 'Огонёк'",
 				description: 'Мой первый бизнес',
-				logo: '../assets/img/imgContainer.png',
+				formData: {
+					displayFileName: null,
+					uploadFileData: '../assets/img/imgContainer.png',
+				},
 			},
 		],
 	},

@@ -131,7 +131,14 @@ textarea {
 	padding: 8px 7px 1px;
 	border-radius: 8px;
 	border: 1.5px solid #4444;
-	width: min-content;
+	max-width: 300px;
+	object-fit: contain;
+}
+
+.logo {
+	height: 100%;
+	width: 100%;
+	object-fit: contain;
 }
 
 .logo_before {

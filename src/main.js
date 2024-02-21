@@ -6,7 +6,6 @@ import store from './store'
 
 Vue.config.productionTip = false
 
-// axios.defaults.baseURL = process.env.API_ENDPOINT;
 axios.defaults.baseURL = 'http://localhost:8080/'
 
 Vue.use(VueAxios, axios)

@@ -64,7 +64,7 @@
 				</div>
 				<div class="text_center">
 					<input
-						v-model="formData.displayFileName"
+						v-model="allOrganisations[0].formData.displayFileName"
 						class="input-field-file"
 						readonly
 					/>
@@ -75,7 +75,10 @@
 						@change="onFileChange"
 					/>
 					<div v-if="readyToUpload">
-						<img :src="formData.uploadFileData" class="preview_img" />
+						<img
+							:src="allOrganisations[0].formData.uploadFileData"
+							class="preview_img"
+						/>
 					</div>
 				</div>
 			</div>
@@ -100,10 +103,6 @@ import { mapGetters, mapMutations } from 'vuex'
 export default {
 	data() {
 		return {
-			formData: {
-				displayFileName: null,
-				uploadFileData: null,
-			},
 			organisationType: 'Пансионат',
 			file: '',
 			organisation: {
@@ -111,7 +110,10 @@ export default {
 				type: 0,
 				name: "Санаторий 'Огонёк'",
 				description: 'Мой первый бизнес',
-				logo: '../assets/img/imgContainer.png',
+				formData: {
+					displayFileName: null,
+					uploadFileData: null,
+				},
 			},
 		}
 	},
@@ -143,19 +145,27 @@ export default {
 			},
 		},
 		readyToUpload() {
-			return this.formData.displayFileName && this.formData.uploadFileData
+			return (
+				this.allOrganisations[0].formData.displayFileName &&
+				this.allOrganisations[0].formData.uploadFileData
+			)
 		},
 		...mapGetters(['allTypeOptions', 'allOrganisations']),
 	},
 	methods: {
-		...mapMutations(['updateCurrentStatusIndex', 'changeOrganisationData']),
+		...mapMutations([
+			'updateCurrentStatusIndex',
+			'changeOrganisationData',
+			'changeUploadFileData',
+			'changeDisplayFileName',
+		]),
 		onFileChange(event) {
 			if (event.target.files && event.target.files.length) {
 				const file = event.target.files[0]
-				this.formData.displayFileName = `${event.target.files[0].name}`
+				this.changeDisplayFileName(`${event.target.files[0].name}`)
 				const reader = new FileReader()
 				reader.onload = (e) => {
-					this.formData.uploadFileData = e.target.result
+					this.changeUploadFileData(e.target.result)
 				}
 				reader.readAsDataURL(file)
 			}
@@ -168,9 +178,6 @@ export default {
 		},
 		changeOrganisation() {
 			this.changeOrganisationData(this.organisation)
-		},
-		calcSize(size) {
-			return Math.round(size)
 		},
 	},
 }

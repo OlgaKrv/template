@@ -31,8 +31,8 @@
 				<div class="logo_area">
 					<img
 						class="logo"
-						src="../assets/img/imgContainer.png"
-						alt="imgContainer"
+						:src="allOrganisations[0].formData.uploadFileData"
+						alt="Здесь должен быть размещен логотип компании"
 					/>
 				</div>
 			</div>
