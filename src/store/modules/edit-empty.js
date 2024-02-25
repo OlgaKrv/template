@@ -2,7 +2,7 @@ export default {
 	actions: {},
 	mutations: {
 		updateCurrentStatusIndex(state, num) {
-			state.current_status_index = num
+			state.currentStatusIndex = num
 		},
 		changeOrganisationData(state, organisation) {
 			state.organisations[0].type = organisation.type
@@ -17,8 +17,8 @@ export default {
 		},
 	},
 	state: {
-		current_status_index: 0,
-		type_options: [
+		currentStatusIndex: 0,
+		typeOptions: [
 			{ id: 0, title: 'Санаторий' },
 			{ id: 1, title: 'Пансионат' },
 			{ id: 2, title: 'Курортная поликлиника' },
@@ -38,16 +38,16 @@ export default {
 	},
 	getters: {
 		currentStatusIndex(state) {
-			return state.current_status_index
+			return state.currentStatusIndex
 		},
 		allTypeOptions(state) {
-			return state.type_options
+			return state.typeOptions
 		},
 		allOrganisations(state) {
 			return state.organisations
 		},
 		typeOrganisation: (state) => (num) => {
-			return state.type_options[num].title
+			return state.typeOptions[num].title
 		},
 	},
 }

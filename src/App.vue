@@ -1,8 +1,14 @@
 <template>
 	<div id="app">
-		<div v-if="this.currentStatusIndex == 0"><empty /></div>
-		<div v-if="this.currentStatusIndex == 1"><edit-empty /></div>
-		<div v-if="this.currentStatusIndex == 2"><filled /></div>
+		<div class="content-wrapper" v-if="this.currentStatusIndex == 0">
+			<empty />
+		</div>
+		<div class="content-wrapper" v-if="this.currentStatusIndex == 1">
+			<edit-empty />
+		</div>
+		<div class="content-wrapper" v-if="this.currentStatusIndex == 2">
+			<filled />
+		</div>
 	</div>
 </template>
 
@@ -57,18 +63,20 @@ body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	background-color: rgb(113, 113, 113);
-	padding: 10px;
+	padding: 0;
+	padding-top: 30px;
+	margin: 0px;
 }
 
-.content_title {
+.content-title {
 	display: flex;
 	justify-content: space-between;
 	margin-bottom: 17px;
 }
 
-.content_wrapper {
-	display: block;
-	margin: 20px;
+.content-wrapper {
+	margin: 0px auto;
+	max-width: 724px;
 	padding: 23px;
 	background-color: #fff;
 	border-radius: 14px;
@@ -84,14 +92,11 @@ h2 {
 	text-align: left;
 }
 
-.w_100 {
+.organization-data-form__input,
+.organization-data-form__select {
+	box-sizing: border-box;
 	width: 100%;
-	display: flex;
-}
-
-input,
-select {
-	width: 100%;
+	height: 40px;
 	cursor: pointer;
 	padding: 7px;
 	margin: 0;
@@ -105,7 +110,8 @@ select {
 	text-align: left;
 }
 
-textarea {
+.organization-data-form__textarea {
+	box-sizing: border-box;
 	width: 100%;
 	cursor: pointer;
 	padding: 3px 7px;
@@ -120,14 +126,15 @@ textarea {
 	text-align: left;
 }
 
-.insertion_area {
+.organization-data-form__insertion_area {
 	border-radius: 8px;
 	padding: 12px 10px 14px;
 	border: 2px dashed #4444;
 }
 
-.logo_area {
+.logo__area {
 	display: block;
+	margin-top: 7px;
 	padding: 8px 7px 1px;
 	border-radius: 8px;
 	border: 1.5px solid #4444;
@@ -135,18 +142,25 @@ textarea {
 	object-fit: contain;
 }
 
-.logo {
+@media screen and (min-width: 250px) {
+	.logo__area {
+		max-width: 200px;
+	}
+}
+
+.logo__img {
 	height: 100%;
 	width: 100%;
 	object-fit: contain;
 }
 
-.logo_before {
+.logo {
 	margin-top: 14px;
 }
 
-.text_description {
+.organization-data-form__description {
 	font-family: Roboto-Regular;
+	margin: 0 0 5px;
 	padding-top: 3px;
 	font-size: 16px;
 	font-weight: 400;
@@ -156,7 +170,7 @@ textarea {
 	justify-content: center;
 }
 
-.text_after {
+.organization-data-form__small {
 	font-family: Roboto-Regular;
 	font-size: 14px;
 	font-weight: 400;
@@ -164,7 +178,7 @@ textarea {
 	padding-bottom: 1px;
 	letter-spacing: 0em;
 	color: rgba(101, 101, 101, 1);
-	margin: 0;
+	margin-bottom: 5px;
 }
 
 .pt_3 {
@@ -175,7 +189,7 @@ textarea {
 	padding-top: 5px;
 }
 
-.text_item {
+.organization-data-form__label {
 	font-family: Roboto-Medium;
 	font-size: 14px;
 	font-weight: 500;
@@ -188,6 +202,7 @@ textarea {
 .text_item_element {
 	font-family: Roboto-Medium;
 	font-size: 16px;
+	margin-left: 0px;
 	margin-top: 5px;
 	font-weight: 500;
 	line-height: 20px;
@@ -200,89 +215,95 @@ textarea {
 	padding-right: 3px;
 }
 
-.parameter_indentation {
+.organization-data-form {
 	margin-bottom: 17px;
 }
 
-.text_center {
+dd {
+	margin-bottom: 17px;
+}
+
+.organization-data-form__align_center {
 	display: flex;
 	justify-content: center;
 }
 
-.btn_add {
+.btn--center,
+.text-center {
+	display: flex;
+	justify-content: center;
+}
+
+.btn {
 	cursor: pointer;
-	background: rgba(232, 242, 254, 1);
-	color: rgba(4, 92, 196, 1);
 	font-family: Roboto-Medium;
 	font-size: 14px;
 	font-weight: 500;
 	line-height: 20px;
+	border: 0px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.btn--svg {
+	margin-right: 8px;
+}
+
+.btn--before {
+	margin-top: 14px;
+}
+
+.btn--add {
+	background: rgba(232, 242, 254, 1);
+	color: rgba(4, 92, 196, 1);
 	letter-spacing: 0em;
 	text-align: center;
 	border-radius: 5px;
-	border: 0px;
 	padding: 4px 7px;
-	align-items: center;
-	display: flex;
 }
 
-.btn_add:hover {
+.btn--add:hover {
 	background: rgb(212, 232, 254);
 }
 
-.btn_add:active {
+.btn--add:active {
 	background: rgb(184, 216, 255);
 }
 
-.btn_close {
-	cursor: pointer;
+.btn--close {
 	background: rgba(237, 237, 237);
 	color: rgba(53, 53, 53, 1);
-	font-family: Roboto-Medium;
 	height: 28px;
-	font-size: 14px;
-	font-weight: 500;
-	line-height: 18px;
 	letter-spacing: 0em;
 	text-align: center;
 	border-radius: 5px;
-	border: 0px;
 	padding: 2px 9px;
-	align-items: center;
-	display: flex;
 }
 
-.btn_close:hover {
+.btn--close:hover {
 	background: rgb(210, 210, 210);
 }
 
-.btn_close:active {
+.btn--close:active {
 	background: rgb(172, 172, 172);
 }
 
-.btn_save {
-	cursor: pointer;
+.btn--save {
 	width: 100%;
 	padding: 12px;
 	border-radius: 8px;
 	gap: 8px;
 	background: rgba(21, 136, 201);
-	border: 0px;
-	margin-top: 14px;
 	color: #fff;
-	font-family: Roboto-Medium;
-	font-size: 14px;
-	font-weight: 500;
-	line-height: 20px;
 	letter-spacing: 0em;
-	text-align: center;
 }
 
-.btn_save:hover {
+.btn--save:hover {
 	background: rgb(62, 162, 220);
 }
 
-.btn_save:active {
+.btn--save:active {
 	background: rgb(50, 179, 254);
 }
 

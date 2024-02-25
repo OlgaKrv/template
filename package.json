@@ -55,6 +55,7 @@
 		"rules": {
 			"global-require": 0,
 			"vue/multi-word-component-names": 0,
+			"vue/no-parsing-error": 0,
 			"import/no-extraneous-dependencies": [
 				"error",
 				{
